@@ -5,3 +5,4 @@ Target:
     -   Create new thread (this thread will handle the payload)
     -   Sleep handler thread
     -   Fix trapdoor (allow jump once)
+-   Anti VM
