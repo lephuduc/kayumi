@@ -13,7 +13,7 @@ unsigned char keybuffer[] = "___EASTEREGG2___""\xca\xfe\xba\xbe\xde\xad\xc0\xde"
 int KEY_Size = 8;
 
 #define DEBUG 1
-#define PAYLOAD_EMBED 
+#define PAYLOAD_EMBED 1
 
 void _xor(unsigned char *dest, unsigned char * src, int len)
 {
@@ -22,6 +22,7 @@ void _xor(unsigned char *dest, unsigned char * src, int len)
         dest[i] ^= src[i];
     }
 }
+
 unsigned char inv_sbox[256] = {
     0x52, 0x09, 0x6a, 0xd5, 0x30, 0x36, 0xa5, 0x38, 0xbf, 0x40, 0xa3, 0x9e, 0x81, 0xf3, 0xd7, 0xfb,
     0x7c, 0xe3, 0x39, 0x82, 0x9b, 0x2f, 0xff, 0x87, 0x34, 0x8e, 0x43, 0x44, 0xc4, 0xde, 0xe9, 0xcb,
@@ -74,7 +75,7 @@ void PrintLastError(DWORD errorNum)
         FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
         NULL, errorNum, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), (LPSTR)&messageBuffer, 0, NULL);
 
-    printf("Error code %lu: %s\n", errorNum, messageBuffer);
+    printf("Error code 0x%x: %s\n", errorNum, messageBuffer);
 
     // Free the buffer allocated by FormatMessage
     LocalFree(messageBuffer);
