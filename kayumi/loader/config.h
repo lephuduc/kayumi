@@ -5,6 +5,7 @@
 #include "peb-lookup.h"
 #include "func-prototype.h"
 
+
 //int BUFFER_Size = 203602;
  //int BUFFER_Size = 205;
 
@@ -158,7 +159,7 @@ void GetCurrentProcessDirectory(char* processDir, DWORD size) {
     if (lastSlash != NULL) {
         // Null-terminate the string at the last backslash to get the directory
         *lastSlash = '\0';
-        strncpy(processDir, fullPath, size);
+        strncpy_s(processDir, 1,fullPath, size);
     } else {
         // perror("Failed to find the directory part in the path");
     }
@@ -199,4 +200,3 @@ BOOL OpenKeyRecursive(HKEY currentKey, PHKEY saveKey, char **subkeys, int curren
         return FALSE;
     }
 }
-

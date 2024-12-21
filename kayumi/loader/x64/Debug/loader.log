@@ -1,32 +1,33 @@
 ﻿  main.c
-E:\Personal\Study\HK7\KLTN\kayumi\loader\config.h(108,37): warning C4267: 'function': conversion from 'size_t' to 'DWORD', possible loss of data
+E:\Personal\Study\HK7\kayumi\kayumi\loader\config.h(108,37): warning C4267: 'function': conversion from 'size_t' to 'DWORD', possible loss of data
   (compiling source file 'main.c')
   
-E:\Personal\Study\HK7\KLTN\kayumi\loader\config.h(149,45): warning C4047: 'function': 'LPWSTR' differs in levels of indirection from 'LPWSTR [260]'
+E:\Personal\Study\HK7\kayumi\kayumi\loader\config.h(149,45): warning C4047: 'function': 'LPWSTR' differs in levels of indirection from 'LPWSTR [260]'
   (compiling source file 'main.c')
   
-E:\Personal\Study\HK7\KLTN\kayumi\loader\config.h(149,45): warning C4024: 'GetModuleFileNameW': different types for formal and actual parameter 2
+E:\Personal\Study\HK7\kayumi\kayumi\loader\config.h(149,45): warning C4024: 'GetModuleFileNameW': different types for formal and actual parameter 2
   (compiling source file 'main.c')
   
-E:\Personal\Study\HK7\KLTN\kayumi\loader\config.h(157,31): warning C4047: 'function': 'const char *' differs in levels of indirection from 'LPWSTR [260]'
+E:\Personal\Study\HK7\kayumi\kayumi\loader\config.h(157,31): warning C4047: 'function': 'const char *' differs in levels of indirection from 'LPWSTR [260]'
   (compiling source file 'main.c')
   
-E:\Personal\Study\HK7\KLTN\kayumi\loader\config.h(157,31): warning C4024: 'strrchr': different types for formal and actual parameter 1
+E:\Personal\Study\HK7\kayumi\kayumi\loader\config.h(157,31): warning C4024: 'strrchr': different types for formal and actual parameter 1
   (compiling source file 'main.c')
   
-E:\Personal\Study\HK7\KLTN\kayumi\loader\config.h(161,29): warning C4047: 'function': 'const char *' differs in levels of indirection from 'LPWSTR [260]'
+E:\Personal\Study\HK7\kayumi\kayumi\loader\config.h(161,29): warning C4047: 'function': 'const char *' differs in levels of indirection from 'LPWSTR [260]'
   (compiling source file 'main.c')
   
-E:\Personal\Study\HK7\KLTN\kayumi\loader\config.h(161,29): warning C4024: 'strncpy': different types for formal and actual parameter 2
+E:\Personal\Study\HK7\kayumi\kayumi\loader\config.h(161,29): warning C4024: 'strncpy': different types for formal and actual parameter 2
   (compiling source file 'main.c')
   
-E:\Personal\Study\HK7\KLTN\kayumi\loader\payload.h(38,24): warning C4133: 'function': incompatible types - from 'WCHAR [260]' to 'const char *'
+E:\Personal\Study\HK7\kayumi\kayumi\loader\payload.h(38,24): warning C4133: 'function': incompatible types - from 'WCHAR [260]' to 'const char *'
   (compiling source file 'main.c')
   
-E:\Personal\Study\HK7\KLTN\kayumi\loader\payload.h(38,36): warning C4133: 'function': incompatible types - from 'wchar_t *' to 'const char *'
+E:\Personal\Study\HK7\kayumi\kayumi\loader\payload.h(38,36): warning C4133: 'function': incompatible types - from 'wchar_t *' to 'const char *'
   (compiling source file 'main.c')
   
-E:\Personal\Study\HK7\KLTN\kayumi\loader\main.c(43,24): warning C4133: 'function': incompatible types - from 'WCHAR [260]' to 'const char *'
-E:\Personal\Study\HK7\KLTN\kayumi\loader\main.c(147,9): warning C4101: 'keylen': unreferenced local variable
-E:\Personal\Study\HK7\KLTN\kayumi\loader\main.c(146,21): warning C4101: 'key': unreferenced local variable
-  loader.vcxproj -> E:\Personal\Study\HK7\KLTN\kayumi\x64\Debug\loader.exe
+E:\Personal\Study\HK7\kayumi\kayumi\loader\main.c(42,24): warning C4133: 'function': incompatible types - from 'WCHAR [260]' to 'const char *'
+E:\Personal\Study\HK7\kayumi\kayumi\loader\main.c(147,9): warning C4101: 'keylen': unreferenced local variable
+E:\Personal\Study\HK7\kayumi\kayumi\loader\main.c(146,21): warning C4101: 'key': unreferenced local variable
+  LINK : E:\Personal\Study\HK7\kayumi\kayumi\x64\Debug\loader.exe not found or not built by the last incremental link; performing full link
+  loader.vcxproj -> E:\Personal\Study\HK7\kayumi\kayumi\x64\Debug\loader.exe

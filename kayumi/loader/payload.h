@@ -349,9 +349,7 @@ BOOL InjectPayload(HANDLE hProcess, unsigned char* buffer, int bufferlen)
         return FALSE;
     }
 
-
-    int d;
-    scanf("%d", &d);
+    getchar();
 
     PROCESS_INSTRUMENTATION_CALLBACK_INFORMATION procinfo;
     procinfo.Reserved = 0;
