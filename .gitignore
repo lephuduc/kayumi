@@ -1,0 +1,91 @@
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# User-specific folders
+.vscode/
+.idea/
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+
+# Visual Studio working files
+.vs/
+.vscode/
+.vsconfig
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+Testing/
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+
+# Windows thumbnail database files
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Temporary files
+*.temp
+*.tmp
+*.bak
+*.swp
+*.swo
+*.dir
+
+# Python virtual environments
+*.pyc
+__pycache__/
+
+# Backup files
+*.bak
+*.old
+
+# Package Files
+*.nupkg
+*.snupkg
+project.lock.json
+project.fragment.lock.json
+
+# Azure DevOps
+.vsts*
+
+# Windows image file caches
+*.png.cache
+
+# Other
+# Uncomment if using NuGet
+#*.nupkg
+*.dbmdl
+*.pdb
+
+# Uncomment if using Node.js
+#node_modules/
+
+# Uncomment if using Code Coverage
+#*.coverage
+#*.coveragexml

