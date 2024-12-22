@@ -44,7 +44,7 @@ const char * aRegQueryValueA = "RegQueryValueA";
 // const char * aCreateFileMappingA = "CreateFileMappingA";
 const char * aMappingName = "Global\\Shaco";
 const char * aNtSetInformationProcess = "NtSetInformationProcess";
-
+const char * aSleep = "Sleep";
 
 /////// Pure copy, but there is no point in coding them again as it only declare string and define func pointer (rename ???)
 typedef HANDLE(WINAPI * pCreateFileA)(LPCSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode,
@@ -166,3 +166,5 @@ typedef NTSTATUS(NTAPI* pRtlAdjustPrivilege)(
     BOOLEAN CurrentThread,
     DWORD* OldStatus
 );
+
+typedef void(NTAPI * pSleep)(DWORD dwMilliseconds);
