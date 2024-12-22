@@ -11,6 +11,7 @@ Target:
 -   Reduce entropy in data section.
 -   NTDLL unhooking (dont know, could implement if have more time)
 
+-   Add exclusive (loader, notepad) window defender.
 
 Achieved:
 -   IAT remove
