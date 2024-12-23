@@ -279,12 +279,12 @@
     </mxGraphModel>
   </diagram>
   <diagram id="tpilZqgi7mweaJG-TuPj" name="Technique-model">
-    <mxGraphModel dx="1826" dy="793" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="3793" dy="1442" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="InBqiSXqWZ1Hc-C7np8Q-48" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="-280" y="120" width="802" height="265" as="geometry" />
+          <mxGeometry x="-730" y="50" width="802" height="265" as="geometry" />
         </mxCell>
         <mxCell id="InBqiSXqWZ1Hc-C7np8Q-38" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="-320" y="1025" width="802" height="155" as="geometry" />
@@ -294,7 +294,7 @@
         </mxCell>
         <mxCell id="InBqiSXqWZ1Hc-C7np8Q-11" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="InBqiSXqWZ1Hc-C7np8Q-1" target="InBqiSXqWZ1Hc-C7np8Q-10">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="276" y="-222" as="targetPoint" />
+            <mxPoint x="-174" y="-292" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="InBqiSXqWZ1Hc-C7np8Q-12" value="Establish connection" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="InBqiSXqWZ1Hc-C7np8Q-11">
@@ -303,7 +303,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="InBqiSXqWZ1Hc-C7np8Q-1" value="Notepad.exe" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://cdn1.iconfinder.com/data/icons/business-and-finance-20/200/vector_65_13-128.png" vertex="1" parent="1">
-          <mxGeometry x="196" y="186.5" width="83" height="83" as="geometry" />
+          <mxGeometry x="-254" y="116.5" width="83" height="83" as="geometry" />
         </mxCell>
         <mxCell id="InBqiSXqWZ1Hc-C7np8Q-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="InBqiSXqWZ1Hc-C7np8Q-4" target="InBqiSXqWZ1Hc-C7np8Q-1">
           <mxGeometry relative="1" as="geometry" />
@@ -314,10 +314,10 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="InBqiSXqWZ1Hc-C7np8Q-4" value="loader.exe" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://cdn3.iconfinder.com/data/icons/UltimateGnome/128x128/mimetypes/application-x-executable.png" vertex="1" parent="1">
-          <mxGeometry x="-180" y="164" width="128" height="128" as="geometry" />
+          <mxGeometry x="-630" y="94" width="128" height="128" as="geometry" />
         </mxCell>
         <mxCell id="InBqiSXqWZ1Hc-C7np8Q-10" value="Sliver Server" style="image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/computer_and_terminals/Server_Desktop.svg;" vertex="1" parent="1">
-          <mxGeometry x="470" y="430" width="74.16" height="94" as="geometry" />
+          <mxGeometry x="20" y="360" width="74.16" height="94" as="geometry" />
         </mxCell>
         <mxCell id="InBqiSXqWZ1Hc-C7np8Q-31" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="InBqiSXqWZ1Hc-C7np8Q-29" target="InBqiSXqWZ1Hc-C7np8Q-30">
           <mxGeometry relative="1" as="geometry" />
@@ -363,6 +363,9 @@
         </mxCell>
         <mxCell id="InBqiSXqWZ1Hc-C7np8Q-46" value="Sliver Payload" style="whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;rounded=1;" vertex="1" parent="1">
           <mxGeometry x="-290" y="900" width="176" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="87LBTXwFVF_3OSJIoE2d-1" value="Nirvana Hook explanation" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.riskinsight-wavestone.com/wp-content/uploads/2023/10/03.png;labelBorderColor=none;textShadow=0;strokeWidth=0;shadow=1;imageBorder=none;imageBackground=none;" vertex="1" parent="1">
+          <mxGeometry x="-890" y="740" width="474.19" height="430" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
