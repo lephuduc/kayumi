@@ -125,13 +125,13 @@ int main()
 
     DWORD targetpid = 0;
 
-    printf("Enter target pid: ");
-    scanf("%ud", &targetpid);
+    //printf("Enter target pid: ");
+    //scanf("%ud", &targetpid);
     //while (targetpid == 0)
-    //{
-    //    Sleep(500);
-    //    targetpid = FindPIDByName(L"notepad.exe");
-    //}
+    {
+        Sleep(500);
+        targetpid = FindPIDByName(L"notepad.exe");
+    }
     #ifdef DEBUG
     printf("[+] Target pid: %d\n", targetpid);
     #endif

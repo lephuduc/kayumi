@@ -12,6 +12,9 @@ Target:
 -   NTDLL unhooking (dont know, could implement if have more time)
 
 -   Add exclusive (loader, notepad) window defender.
+-   Add packer
+-   Maybe automate process of gain admin priv/ SE_DEBUG (the first time, it will ask for priv, but in the later, those are automate when execute)
+-   Indirect syscall / direct syscall without depend on context (hellsgate, halosgate)
 
 Achieved:
 -   IAT remove
