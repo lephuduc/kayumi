@@ -129,11 +129,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="config.h" />
+    <ClInclude Include="debugger-detect.h" />
     <ClInclude Include="func-prototype.h" />
     <ClInclude Include="low-entropy-payload.h" />
     <ClInclude Include="payload.h" />
     <ClInclude Include="peb-lookup.h" />
     <ClInclude Include="sysheaders.h" />
+    <ClInclude Include="VM-detect.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c" />

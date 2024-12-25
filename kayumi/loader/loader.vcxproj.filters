@@ -33,6 +33,12 @@
     <ClInclude Include="sysheaders.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="debugger-detect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VM-detect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">

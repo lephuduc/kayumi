@@ -3,6 +3,7 @@
     -   [ ] Persistence
     -   [ ] String obfuscation (in rdata, to prevent API detection)
     -   [ ] Anti VM
+    -   [x] Anti debugging
     -   [ ] Reduce entropy in data section.
     -   [ ] Add exclusive (loader, notepad) window defender.
     -   [ ] Add packer

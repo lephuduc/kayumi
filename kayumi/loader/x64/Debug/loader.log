@@ -20,13 +20,21 @@ C:\Users\turbo_granny\Desktop\kltn_meodev\kayumi\loader\config.h(163,33): warnin
 C:\Users\turbo_granny\Desktop\kltn_meodev\kayumi\loader\config.h(163,33): warning C4024: 'strncpy_s': different types for formal and actual parameter 3
   (compiling source file 'main.c')
   
+C:\Users\turbo_granny\Desktop\kltn_meodev\kayumi\loader\config.h(171,50): warning C4090: 'function': different 'const' qualifiers
+  (compiling source file 'main.c')
+  
 C:\Users\turbo_granny\Desktop\kltn_meodev\kayumi\loader\payload.h(40,24): warning C4133: 'function': incompatible types - from 'WCHAR [260]' to 'const char *'
   (compiling source file 'main.c')
   
 C:\Users\turbo_granny\Desktop\kltn_meodev\kayumi\loader\payload.h(40,36): warning C4133: 'function': incompatible types - from 'wchar_t *' to 'const char *'
   (compiling source file 'main.c')
   
-C:\Users\turbo_granny\Desktop\kltn_meodev\kayumi\loader\main.c(35,24): warning C4133: 'function': incompatible types - from 'WCHAR [260]' to 'const char *'
-C:\Users\turbo_granny\Desktop\kltn_meodev\kayumi\loader\main.c(143,9): warning C4101: 'keylen': unreferenced local variable
-C:\Users\turbo_granny\Desktop\kltn_meodev\kayumi\loader\main.c(142,21): warning C4101: 'key': unreferenced local variable
+C:\Users\turbo_granny\Desktop\kltn_meodev\kayumi\loader\payload.h(167,49): warning C4090: 'function': different 'const' qualifiers
+  (compiling source file 'main.c')
+  
+C:\Users\turbo_granny\Desktop\kltn_meodev\kayumi\loader\main.c(32,39): warning C4090: 'function': different 'const' qualifiers
+C:\Users\turbo_granny\Desktop\kltn_meodev\kayumi\loader\main.c(36,24): warning C4133: 'function': incompatible types - from 'WCHAR [260]' to 'const char *'
+C:\Users\turbo_granny\Desktop\kltn_meodev\kayumi\loader\main.c(173,39): warning C4090: 'function': different 'const' qualifiers
+C:\Users\turbo_granny\Desktop\kltn_meodev\kayumi\loader\main.c(158,9): warning C4101: 'keylen': unreferenced local variable
+C:\Users\turbo_granny\Desktop\kltn_meodev\kayumi\loader\main.c(157,21): warning C4101: 'key': unreferenced local variable
   loader.vcxproj -> C:\Users\turbo_granny\Desktop\kltn_meodev\kayumi\x64\Debug\loader.exe
