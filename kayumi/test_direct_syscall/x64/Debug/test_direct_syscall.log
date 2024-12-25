@@ -1,0 +1,3 @@
+﻿  main.c
+C:\Users\turbo_granny\Desktop\kltn_meodev\kayumi\test_direct_syscall\main.c(41,74): warning C4133: 'function': incompatible types - from 'PULONG' to 'PSIZE_T'
+  test_direct_syscall.vcxproj -> C:\Users\turbo_granny\Desktop\kltn_meodev\kayumi\x64\Debug\test_direct_syscall.exe

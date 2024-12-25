@@ -20,10 +20,10 @@ C:\Users\turbo_granny\Desktop\kltn_meodev\kayumi\loader\config.h(163,33): warnin
 C:\Users\turbo_granny\Desktop\kltn_meodev\kayumi\loader\config.h(163,33): warning C4024: 'strncpy_s': different types for formal and actual parameter 3
   (compiling source file 'main.c')
   
-C:\Users\turbo_granny\Desktop\kltn_meodev\kayumi\loader\payload.h(38,24): warning C4133: 'function': incompatible types - from 'WCHAR [260]' to 'const char *'
+C:\Users\turbo_granny\Desktop\kltn_meodev\kayumi\loader\payload.h(40,24): warning C4133: 'function': incompatible types - from 'WCHAR [260]' to 'const char *'
   (compiling source file 'main.c')
   
-C:\Users\turbo_granny\Desktop\kltn_meodev\kayumi\loader\payload.h(38,36): warning C4133: 'function': incompatible types - from 'wchar_t *' to 'const char *'
+C:\Users\turbo_granny\Desktop\kltn_meodev\kayumi\loader\payload.h(40,36): warning C4133: 'function': incompatible types - from 'wchar_t *' to 'const char *'
   (compiling source file 'main.c')
   
 C:\Users\turbo_granny\Desktop\kltn_meodev\kayumi\loader\main.c(35,24): warning C4133: 'function': incompatible types - from 'WCHAR [260]' to 'const char *'
