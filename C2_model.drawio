@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0" version="25.0.3" pages="3">
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0" version="25.0.3" pages="4">
   <diagram name="Main-model" id="wbI6PLVD9b1GlbDWB_oB">
     <mxGraphModel dx="1826" dy="1593" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -366,6 +366,56 @@
         </mxCell>
         <mxCell id="87LBTXwFVF_3OSJIoE2d-1" value="Nirvana Hook explanation" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.riskinsight-wavestone.com/wp-content/uploads/2023/10/03.png;labelBorderColor=none;textShadow=0;strokeWidth=0;shadow=1;imageBorder=none;imageBackground=none;" vertex="1" parent="1">
           <mxGeometry x="-890" y="740" width="474.19" height="430" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="8ev49eGgkWAjaJqNTml2" name="C2">
+    <mxGraphModel dx="1240" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="ueq079IkRGfhmFYXBJEJ-7" value="" style="rounded=1;arcSize=10;dashed=1;strokeColor=#F59D56;fillColor=none;gradientColor=none;dashPattern=8 4;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="580" y="260" width="170" height="410" as="geometry" />
+        </mxCell>
+        <mxCell id="ueq079IkRGfhmFYXBJEJ-1" value="C&amp;amp;C server" style="sketch=0;aspect=fixed;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#00188D;shape=mxgraph.mscae.enterprise.server_farm" vertex="1" parent="1">
+          <mxGeometry x="410" y="436" width="81.25" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="ueq079IkRGfhmFYXBJEJ-2" value="Mobile devices" style="sketch=0;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;fillColor=#505050;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;outlineConnect=0;align=center;shape=mxgraph.office.devices.cell_phone_android_standalone;" vertex="1" parent="1">
+          <mxGeometry x="650" y="440" width="24" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="ueq079IkRGfhmFYXBJEJ-3" value="PC" style="sketch=0;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;fillColor=#505050;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;outlineConnect=0;align=center;shape=mxgraph.office.devices.workstation_pc;" vertex="1" parent="1">
+          <mxGeometry x="635.5" y="320" width="53" height="59" as="geometry" />
+        </mxCell>
+        <mxCell id="ueq079IkRGfhmFYXBJEJ-4" value="IoT devices" style="fontColor=#0066CC;verticalAlign=top;verticalLabelPosition=bottom;labelPosition=center;align=center;html=1;outlineConnect=0;fillColor=#CCCCCC;strokeColor=#6881B3;gradientColor=none;gradientDirection=north;strokeWidth=2;shape=mxgraph.networks.security_camera;" vertex="1" parent="1">
+          <mxGeometry x="629.75" y="550" width="64.5" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="ueq079IkRGfhmFYXBJEJ-5" value="Attacker&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="sketch=0;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;outlineConnect=0;align=center;shape=mxgraph.office.users.user;fillColor=#DA4026;" vertex="1" parent="1">
+          <mxGeometry x="210" y="437" width="46" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="ueq079IkRGfhmFYXBJEJ-6" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="ueq079IkRGfhmFYXBJEJ-5" target="ueq079IkRGfhmFYXBJEJ-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="250" y="526" as="sourcePoint" />
+            <mxPoint x="300" y="476" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ueq079IkRGfhmFYXBJEJ-8" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="ueq079IkRGfhmFYXBJEJ-1" target="ueq079IkRGfhmFYXBJEJ-4">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="460" y="440" as="sourcePoint" />
+            <mxPoint x="510" y="390" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ueq079IkRGfhmFYXBJEJ-9" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="ueq079IkRGfhmFYXBJEJ-1" target="ueq079IkRGfhmFYXBJEJ-2">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="470" y="450" as="sourcePoint" />
+            <mxPoint x="520" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ueq079IkRGfhmFYXBJEJ-10" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="ueq079IkRGfhmFYXBJEJ-1" target="ueq079IkRGfhmFYXBJEJ-3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="480" y="460" as="sourcePoint" />
+            <mxPoint x="540" y="460" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
