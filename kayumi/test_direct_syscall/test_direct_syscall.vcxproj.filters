@@ -15,36 +15,24 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="payload.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="peb-lookup.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="config.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="func-prototype.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="low-entropy-payload.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sysheaders.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="main.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sysheaders.c">
+    <ClCompile Include="myheaders.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <MASM Include="sysheaders_stubs.rnd.x64.asm">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="func-prototype.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="myheaders.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <MASM Include="myheaders_stubs.std.x64.asm">
+      <Filter>Resource Files</Filter>
     </MASM>
   </ItemGroup>
 </Project>

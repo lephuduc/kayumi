@@ -8,12 +8,12 @@
 #define TO_LOWERCASE(c) ('a' <= c && c <= 'z' ? c : c - 'A' + 'a')
 #endif
 
-typedef struct _UNICODE_STRING {
+typedef struct _unicode_string {
     USHORT Length;
     USHORT MaximumLength;
     PWSTR Buffer;
 
-} UNICODE_STRING, *PUNICODE_STRING;
+} unicode_string, *Punicode_string;
 
 
 
@@ -37,8 +37,8 @@ typedef struct _LDR_DATA_TABLE_ENTRY {
     void *BaseAddress;
     void *EntryPoint;
     ULONG SizeOfImage;
-    UNICODE_STRING FullDllName;
-    UNICODE_STRING BaseDllName;
+    unicode_string FullDllName;
+    unicode_string BaseDllName;
     ULONG Flags;
     SHORT LoadCount;
     SHORT TlsIndex;

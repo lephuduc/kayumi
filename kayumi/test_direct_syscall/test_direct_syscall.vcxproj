@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{c9e30249-cf72-4656-b546-3393440009d2}</ProjectGuid>
-    <RootNamespace>threadpayload</RootNamespace>
+    <ProjectGuid>{5b693aee-230a-40fb-95ca-21b1530a76dd}</ProjectGuid>
+    <RootNamespace>testdirectsyscall</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -129,13 +129,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.c" />
-    <ClCompile Include="sysheaders.c" />
+    <ClCompile Include="myheaders.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="sysheaders.h" />
+    <ClInclude Include="func-prototype.h" />
+    <ClInclude Include="myheaders.h" />
   </ItemGroup>
   <ItemGroup>
-    <MASM Include="sysheaders_stubs.rnd.x64.asm" />
+    <MASM Include="myheaders_stubs.std.x64.asm" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

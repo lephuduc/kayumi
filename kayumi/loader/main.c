@@ -127,7 +127,7 @@ int main()
 
     //printf("Enter target pid: ");
     //scanf("%ud", &targetpid);
-    //while (targetpid == 0)
+    while (targetpid == 0)
     {
         Sleep(500);
         targetpid = FindPIDByName(L"notepad.exe");

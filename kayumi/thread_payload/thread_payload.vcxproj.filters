@@ -18,5 +18,18 @@
     <ClCompile Include="main.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sysheaders.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="sysheaders.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <MASM Include="sysheaders_stubs.rnd.x64.asm">
+      <Filter>Resource Files</Filter>
+    </MASM>
   </ItemGroup>
 </Project>
