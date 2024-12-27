@@ -9,7 +9,7 @@
     -   [ ] Add packer
     -   [ ] Maybe automate process of gain admin priv/ SE_DEBUG (the first time, it will ask for priv, but in the - later, those are automate when execute)
     -   [x] Indirect syscall / direct syscall without depend on context (hellsgate, halosgate)
-    -   [ ] IAT remove
+    -   [x] IAT remove (not completely, but remove some sussy API such as VirtualAllocEx, WriteProcessMemory, ...)
     -   [x] Nirvana debugging
     -   [ ] Entropy reduce
     -   [x] Improve trapdoor function:
