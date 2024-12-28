@@ -5,7 +5,7 @@
 
 int main(int argc, char ** argv)
 {
-    char *targetpath = argv[1];
+    char* targetpath = "C:\\Users\\turbo_granny\\Desktop\\kltn_meodev\\kayumi\\x64\\Debug\\loader.exe";
     HANDLE hFile = CreateFileA(targetpath, GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
     if (hFile != NULL) printf("opened file\n");
     HANDLE hFileMapping = CreateFileMappingA(hFile, NULL, PAGE_READWRITE, 0, 0, NULL);
@@ -19,12 +19,13 @@ int main(int argc, char ** argv)
     PIMAGE_SECTION_HEADER currentsection = IMAGE_FIRST_SECTION(ntHeaders);
     for (int i = 0; i < ntHeaders->FileHeader.NumberOfSections; ++i)
     {
-        if (*((DWORD64*)currentsection->Name) == 0x61746164722e)
+        if (*((DWORD64*)currentsection->Name) == 0x656d616e662e)
         {
             printf("found section\n");
             LPVOID sectionBase = (LPVOID)((char*)fileBase + currentsection->PointerToRawData);
+            int sectionSize = (int)currentsection->SizeOfRawData;
             DWORD signature = 0xaabbccdd;
-            for (int j = 0; j < 0xa00; j += 4)
+            for (int j = 0; j < sectionSize; j += 4)
                 *((DWORD*)((char*)sectionBase + j)) ^= signature;
             break;
         }

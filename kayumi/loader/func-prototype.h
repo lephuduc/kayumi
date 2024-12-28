@@ -2,50 +2,51 @@
 #include <Windows.h>
 // #include <winternl.h>
 
+#pragma section(".fname", read, write)
 
-const char * aCreateFileA  = "CreateFileA";
-const char * aCreateFileMappingA  = "CreateFileMappingA";
-const char * aMapViewOfFile  = "MapViewOfFile";
-const char * aCloseHandle  = "CloseHandle";
-const char * aUnmapViewOfFile  = "UnmapViewOfFile";
-const char * aGetProcAddress  = "GetProcAddress";
-const char * aUser32dll  = "user32.dll";
-const char * aGetFileSize  = "GetFileSize";
-const char * aGetModuleFileNameA  = "GetModuleFileNameA";
-const char * aRtlCopyMemory  = "RtlCopyMemory";
-const char * aMessageBoxA  = "MessageBoxA";
-const char * aFindFirstFileA  = "FindFirstFileA";
-const char * aFindNextFileA  = "FindNextFileA";
-const char * aFindClose  = "FindClose";
-const char * aLoadLibraryA  = "LoadLibraryA";
-const char * aUser32  = "User32.dll";
-const char * aNtDlldll  = "NtDll.dll";
-const wchar_t *aKernel32dll  = L"Kernel32.dll";
-const char * aOurGoal  = "Sucess hacking!!!";
-const char * aExitProcess  = "ExitProcess";
-const char * aNtQueryInformationProcess  = "NtQueryInformationProcess";
-const char * aGetCurrentProcess  = "GetCurrentProcess";
-const char * aAdvapi32  = "Advapi32.dll";
-const char * aRegOpenKeyExA  = "RegOpenKeyExA";
-const char * aRegQueryValueExA  = "RegQueryValueExA";
-const char * aRegCloseKey  = "RegCloseKey";
-const char * aDbgDetected  = "Debugger Detected!";
-const char * aVirtualAllocEx = "VirtualAllocEx";
-const char * aWriteProcessMemory = "WriteProcessMemory";
-const char * aVirtualProtectEx = "VirtualProtectEx";
-const char * aCreateRemoteThread = "CreateRemoteThread";
-const char * aVirtualProtect = "VirtualProtect";
-const char * aVirtualAlloc = "VirtualAlloc";
-const char * aCreateThread = "CreateThread";
-const char *aRegOpenKeyA = "RegOpenKeyA";
-const char * aRegSetValueExA = "RegSetValueExA";
-const char * aOpenProcess = "OpenProcess";
-const char * aRegQueryValueA = "RegQueryValueA";
-// const char * aCreateFileMappingA = "CreateFileMappingA";
-const char * aMappingName = "Global\\Shaco";
-const char * aNtSetInformationProcess = "NtSetInformationProcess";
-const char * aSleep = "Sleep";
-const char * aNtAllocateVirtualMemory = "NtAllocateVirtualMemory";
+__declspec (allocate(".fname")) char aCreateFileA[] = "CreateFileA";
+__declspec (allocate(".fname")) char aCreateFileMappingA[] = "CreateFileMappingA";
+__declspec (allocate(".fname")) char aMapViewOfFile[] = "MapViewOfFile";
+__declspec (allocate(".fname")) char aCloseHandle[] = "CloseHandle";
+__declspec (allocate(".fname")) char aUnmapViewOfFile[] = "UnmapViewOfFile";
+__declspec (allocate(".fname")) char aGetProcAddress[] = "GetProcAddress";
+__declspec (allocate(".fname")) char aUser32dll[] = "user32.dll";
+__declspec (allocate(".fname")) char aGetFileSize[] = "GetFileSize";
+__declspec (allocate(".fname")) char aGetModuleFileNameA[] = "GetModuleFileNameA";
+__declspec (allocate(".fname")) char aRtlCopyMemory[] = "RtlCopyMemory";
+__declspec (allocate(".fname")) char aMessageBoxA[] = "MessageBoxA";
+__declspec (allocate(".fname")) char aFindFirstFileA[] = "FindFirstFileA";
+__declspec (allocate(".fname")) char aFindNextFileA[] = "FindNextFileA";
+__declspec (allocate(".fname")) char aFindClose[] = "FindClose";
+__declspec (allocate(".fname")) char aLoadLibraryA[] = "LoadLibraryA";
+__declspec (allocate(".fname")) char aUser32[] = "User32.dll";
+__declspec (allocate(".fname")) char aNtDlldll[] = "NtDll.dll";
+__declspec (allocate(".fname")) wchar_t aKernel32dll[] = L"Kernel32.dll";
+__declspec (allocate(".fname")) char aOurGoal[] = "Sucess hacking!!!";
+__declspec (allocate(".fname")) char aExitProcess[] = "ExitProcess";
+__declspec (allocate(".fname")) char aNtQueryInformationProcess[] = "NtQueryInformationProcess";
+__declspec (allocate(".fname")) char aGetCurrentProcess[] = "GetCurrentProcess";
+__declspec (allocate(".fname")) char aAdvapi32[] = "Advapi32.dll";
+__declspec (allocate(".fname")) char aRegOpenKeyExA[] = "RegOpenKeyExA";
+__declspec (allocate(".fname")) char aRegQueryValueExA[] = "RegQueryValueExA";
+__declspec (allocate(".fname")) char aRegCloseKey[] = "RegCloseKey";
+__declspec (allocate(".fname")) char aDbgDetected[] = "Debugger Detected!";
+__declspec (allocate(".fname")) char aVirtualAllocEx[] = "VirtualAllocEx";
+__declspec (allocate(".fname")) char aWriteProcessMemory[] = "WriteProcessMemory";
+__declspec (allocate(".fname")) char aVirtualProtectEx[] = "VirtualProtectEx";
+__declspec (allocate(".fname")) char aCreateRemoteThread[] = "CreateRemoteThread";
+__declspec (allocate(".fname")) char aVirtualProtect[] = "VirtualProtect";
+__declspec (allocate(".fname")) char aVirtualAlloc[] = "VirtualAlloc";
+__declspec (allocate(".fname")) char aCreateThread[] = "CreateThread";
+__declspec (allocate(".fname")) char aRegOpenKeyA[] = "RegOpenKeyA";
+__declspec (allocate(".fname")) char aRegSetValueExA[] = "RegSetValueExA";
+__declspec (allocate(".fname")) char aOpenProcess[] = "OpenProcess";
+__declspec (allocate(".fname")) char aRegQueryValueA[] = "RegQueryValueA";
+//__declspec (allocate(".fname")) // const char * aCreateFileMappingA = "CreateFileMappingA";
+__declspec (allocate(".fname")) char aMappingNam[]  = "Global\\Shaco";
+__declspec (allocate(".fname")) char aNtSetInformationProcess[] = "NtSetInformationProcess";
+__declspec (allocate(".fname")) char aSleep[] = "Sleep";
+__declspec (allocate(".fname")) char aNtAllocateVirtualMemory[] = "NtAllocateVirtualMemory";
 
 
 /////// Pure copy, but there is no point in coding them again as it only declare string and define func pointer (rename ???)

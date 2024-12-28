@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="payload.h">
+    <ClInclude Include="injector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="peb-lookup.h">
@@ -27,16 +27,16 @@
     <ClInclude Include="func-prototype.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="low-entropy-payload.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sysheaders.h">
+    <ClInclude Include="payload.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="debugger-detect.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="VM-detect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sysheaders.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

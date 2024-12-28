@@ -13,6 +13,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "thread_payload", "thread_pa
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test_direct_syscall", "test_direct_syscall\test_direct_syscall.vcxproj", "{5B693AEE-230A-40FB-95CA-21B1530A76DD}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "entropy_remove", "entropy_remove\entropy_remove.vcxproj", "{B9C211E8-4E38-4379-9DFC-6F3DEFBD651B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -61,6 +63,14 @@ Global
 		{5B693AEE-230A-40FB-95CA-21B1530A76DD}.Release|x64.Build.0 = Release|x64
 		{5B693AEE-230A-40FB-95CA-21B1530A76DD}.Release|x86.ActiveCfg = Release|Win32
 		{5B693AEE-230A-40FB-95CA-21B1530A76DD}.Release|x86.Build.0 = Release|Win32
+		{B9C211E8-4E38-4379-9DFC-6F3DEFBD651B}.Debug|x64.ActiveCfg = Debug|x64
+		{B9C211E8-4E38-4379-9DFC-6F3DEFBD651B}.Debug|x64.Build.0 = Debug|x64
+		{B9C211E8-4E38-4379-9DFC-6F3DEFBD651B}.Debug|x86.ActiveCfg = Debug|Win32
+		{B9C211E8-4E38-4379-9DFC-6F3DEFBD651B}.Debug|x86.Build.0 = Debug|Win32
+		{B9C211E8-4E38-4379-9DFC-6F3DEFBD651B}.Release|x64.ActiveCfg = Release|x64
+		{B9C211E8-4E38-4379-9DFC-6F3DEFBD651B}.Release|x64.Build.0 = Release|x64
+		{B9C211E8-4E38-4379-9DFC-6F3DEFBD651B}.Release|x86.ActiveCfg = Release|Win32
+		{B9C211E8-4E38-4379-9DFC-6F3DEFBD651B}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
