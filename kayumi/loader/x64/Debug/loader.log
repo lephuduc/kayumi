@@ -1,2 +1,32 @@
-﻿  LINK : C:\Users\turbo_granny\Desktop\kltn_meodev\kayumi\x64\Debug\loader.exe not found or not built by the last incremental link; performing full link
+﻿  main.c
+C:\Users\turbo_granny\Desktop\kltn_meodev\kayumi\loader\config.h(110,37): warning C4267: 'function': conversion from 'size_t' to 'DWORD', possible loss of data
+  (compiling source file 'main.c')
+  
+C:\Users\turbo_granny\Desktop\kltn_meodev\kayumi\loader\config.h(151,45): warning C4047: 'function': 'LPWSTR' differs in levels of indirection from 'LPWSTR [260]'
+  (compiling source file 'main.c')
+  
+C:\Users\turbo_granny\Desktop\kltn_meodev\kayumi\loader\config.h(151,45): warning C4024: 'GetModuleFileNameW': different types for formal and actual parameter 2
+  (compiling source file 'main.c')
+  
+C:\Users\turbo_granny\Desktop\kltn_meodev\kayumi\loader\config.h(159,31): warning C4047: 'function': 'const char *' differs in levels of indirection from 'LPWSTR [260]'
+  (compiling source file 'main.c')
+  
+C:\Users\turbo_granny\Desktop\kltn_meodev\kayumi\loader\config.h(159,31): warning C4024: 'strrchr': different types for formal and actual parameter 1
+  (compiling source file 'main.c')
+  
+C:\Users\turbo_granny\Desktop\kltn_meodev\kayumi\loader\config.h(163,33): warning C4047: 'function': 'const char *' differs in levels of indirection from 'LPWSTR [260]'
+  (compiling source file 'main.c')
+  
+C:\Users\turbo_granny\Desktop\kltn_meodev\kayumi\loader\config.h(163,33): warning C4024: 'strncpy_s': different types for formal and actual parameter 3
+  (compiling source file 'main.c')
+  
+C:\Users\turbo_granny\Desktop\kltn_meodev\kayumi\loader\injector.h(40,24): warning C4133: 'function': incompatible types - from 'WCHAR [260]' to 'const char *'
+  (compiling source file 'main.c')
+  
+C:\Users\turbo_granny\Desktop\kltn_meodev\kayumi\loader\injector.h(40,36): warning C4133: 'function': incompatible types - from 'wchar_t *' to 'const char *'
+  (compiling source file 'main.c')
+  
+C:\Users\turbo_granny\Desktop\kltn_meodev\kayumi\loader\main.c(39,24): warning C4133: 'function': incompatible types - from 'WCHAR [260]' to 'const char *'
+C:\Users\turbo_granny\Desktop\kltn_meodev\kayumi\loader\main.c(194,9): warning C4101: 'keylen': unreferenced local variable
+C:\Users\turbo_granny\Desktop\kltn_meodev\kayumi\loader\main.c(193,21): warning C4101: 'key': unreferenced local variable
   loader.vcxproj -> C:\Users\turbo_granny\Desktop\kltn_meodev\kayumi\x64\Debug\loader.exe

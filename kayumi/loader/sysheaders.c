@@ -6,6 +6,8 @@
 // https://www.mdsec.co.uk/2020/12/bypassing-user-mode-hooks-and-direct-invocation-of-system-calls-for-red-teams
 
 SW2_SYSCALL_LIST SW2_SyscallList = { 0, 1 };
+
+
 #define RANDSYSCALL
 #ifdef RANDSYSCALL
 #ifndef _WIN64
@@ -143,7 +145,7 @@ EXTERN_C DWORD SW2_GetSyscallNumber(DWORD FunctionHash)
 
 #ifdef RANDSYSCALL
 #ifdef _WIN64
-EXTERN_C DWORD64 SW2_GetRandomSyscallAddress(void)
+EXTERN_C uint64_t SW2_GetRandomSyscallAddress(void)
 #else
 EXTERN_C DWORD SW2_GetRandomSyscallAddress(int callType)
 #endif

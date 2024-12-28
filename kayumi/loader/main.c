@@ -7,6 +7,8 @@
 //#include "string_decrypt.h"
 //#include "VM-detect.h"
 #include "debugger-detect.h"
+
+
 BOOL IsDuplicate()
 {
     DWORD currentpid = GetCurrentProcessId();
@@ -124,8 +126,8 @@ int main()
     
     //HWND window = GetConsoleWindow();
     //ShowWindow(window, SW_HIDE);
-
     decrypt();
+    
     //printf("GetModuleHandleA: %p, getcurprocbaseaddr: %p\n", GetModuleHandleA(NULL), getcurProcBaseAddr());
     if (IsDuplicate()) { 
         exit(0); 
@@ -152,13 +154,13 @@ int main()
     //     printf("[+] VM has not been detected! Operation continue!\n");
     //     #endif
     // }
-
+    
 //    if (CheckDebugPresentBit() || CheckNTGlobalFlag())
 //    {
 //#ifdef DEBUG
 //        printf("[x] Debugger has been detected, operation abort!\n");
-//        exit(0);
 //#endif
+//        exit(0);
 //    }
 //    else
 //    {

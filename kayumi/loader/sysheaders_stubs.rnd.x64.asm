@@ -36,13 +36,18 @@ WhisperMain PROC
 WhisperMain ENDP
 
 NtCreateThreadEx PROC
-    mov currentHash, 098B3CA56h    ; Load function hash into global variable.
+    mov currentHash, 098B0D666h    ; Load function hash into global variable.
     call WhisperMain               ; Resolve function hash into syscall number and make the call
 NtCreateThreadEx ENDP
 
 NtProtectVirtualMemory PROC
-    mov currentHash, 0C954E581h    ; Load function hash into global variable.
+    mov currentHash, 0379D2D3Fh    ; Load function hash into global variable.
     call WhisperMain               ; Resolve function hash into syscall number and make the call
 NtProtectVirtualMemory ENDP
+
+NtAllocateVirtualMemory PROC
+    mov currentHash, 01D97091Bh    ; Load function hash into global variable.
+    call WhisperMain               ; Resolve function hash into syscall number and make the call
+NtAllocateVirtualMemory ENDP
 
 end

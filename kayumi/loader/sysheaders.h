@@ -8,7 +8,7 @@
 
 #include <windows.h>
 
-#define SW2_SEED 0x5934AE1A
+#define SW2_SEED 0x487DEBE7
 #define SW2_ROL8(v) (v << 8 | v >> 24)
 #define SW2_ROR8(v) (v >> 8 | v << 24)
 #define SW2_ROX8(v) ((SW2_SEED % 2) ? SW2_ROL8(v) : SW2_ROR8(v))
@@ -66,13 +66,6 @@ EXTERN_C DWORD64 SW2_GetRandomSyscallAddress(void);
 }
 #endif
 
-typedef struct _UNICODE_STRING
-{
-	USHORT Length;
-	USHORT MaximumLength;
-	PWSTR  Buffer;
-} UNICODE_STRING, *PUNICODE_STRING;
-
 typedef struct _PS_ATTRIBUTE
 {
 	ULONG  Attribute;
@@ -84,6 +77,13 @@ typedef struct _PS_ATTRIBUTE
 	} u1;
 	PSIZE_T ReturnLength;
 } PS_ATTRIBUTE, *PPS_ATTRIBUTE;
+
+typedef struct _UNICODE_STRING
+{
+	USHORT Length;
+	USHORT MaximumLength;
+	PWSTR  Buffer;
+} UNICODE_STRING, *PUNICODE_STRING;
 
 typedef struct _OBJECT_ATTRIBUTES
 {
@@ -120,5 +120,13 @@ EXTERN_C NTSTATUS NtProtectVirtualMemory(
 	IN OUT PSIZE_T RegionSize,
 	IN ULONG NewProtect,
 	OUT PULONG OldProtect);
+
+EXTERN_C NTSTATUS NtAllocateVirtualMemory(
+	IN HANDLE ProcessHandle,
+	IN OUT PVOID * BaseAddress,
+	IN ULONG ZeroBits,
+	IN OUT PSIZE_T RegionSize,
+	IN ULONG AllocationType,
+	IN ULONG Protect);
 
 #endif

