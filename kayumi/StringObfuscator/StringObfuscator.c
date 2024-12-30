@@ -42,6 +42,6 @@ void StringObfuscate(char * path)
 
 int main(int argc, char ** argv)
 {
-    StringObfuscate("C:\\Users\\turbo_granny\\Desktop\\kltn_meodev\\kayumi\\x64\\Debug\\loader.exe");
-    StringObfuscate("C:\\Users\\turbo_granny\\Desktop\\kltn_meodev\\kayumi\\x64\\Release\\loader.exe");
+    //StringObfuscate("C:\\Users\\turbo_granny\\Desktop\\kltn_meodev\\kayumi\\x64\\Debug\\loader.exe");
+    StringObfuscate("loader.exe");
 }

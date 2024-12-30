@@ -134,6 +134,7 @@
     <ClInclude Include="payload.h" />
     <ClInclude Include="injector.h" />
     <ClInclude Include="peb-lookup.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="sysheaders.h" />
     <ClInclude Include="VM-detect.h" />
   </ItemGroup>
@@ -143,6 +144,9 @@
   </ItemGroup>
   <ItemGroup>
     <MASM Include="sysheaders_stubs.rnd.x64.asm" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

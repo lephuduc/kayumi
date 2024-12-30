@@ -36,8 +36,10 @@ DWORD FindPIDByName(wchar_t* processName) {
     }
 
     // Iterate through the processes to find the one with the specified name
+    // lower name of process
+     wchar_t * exe_name = wcslwr(pe32.szExeFile);
     do {
-        if (strcmp(pe32.szExeFile, processName) == 0) {
+        if (wcscmp(exe_name, processName) == 0) {
             pid = pe32.th32ProcessID;
             break;
         }

@@ -3,7 +3,7 @@
 #include "payload.h"
 
 unsigned char low_entropy_payload[2097152];
-char* targetpath = "C:\\Users\\turbo_granny\\Desktop\\kltn_meodev\\kayumi\\loader\\payload.h";
+char* targetpath = "..\\..\\loader\\payload.h";
 
 
 int main()
