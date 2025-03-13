@@ -38,4 +38,4 @@ This loader is designed to enhance stealth, persistence, and evasion capabilitie
 #### Requirements  
 - **Administrator Privileges Required** for privilege escalation and advanced process injection techniques.  
 
-This loader is optimized for **Havoc C2**, providing a stealthy, resilient, and efficient delivery mechanism for payload execution. 🚀  
+This loader is optimized for **Havoc C2**, providing a stealthy, resilient, and efficient delivery mechanism for payload execution.  
