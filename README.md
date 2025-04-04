@@ -34,6 +34,9 @@ Kayumi is suitable as an agent for Stage 1 in Red Team Operation. (For education
 
 The final binary can now be used.
 
+### Automation
+- (Update later)
+
 ### Testing result
 
 Kayumi has been tested with Havoc Agent, which reduced the detection rate:
@@ -48,8 +51,6 @@ We've also tested with some AVs on the newest version of Windows 11 (24H2), with
 - Symantec (Bypassed, Undetected)
 - McAfee (Bypassed, Undetected)
 
-### Automation
-- (Update later)
 
 ## Implemented techniques  
 
@@ -83,3 +84,9 @@ For more information, check the execution flow shown below:
 
 ## Requirements  
 **Administrator Privileges Required** for privilege escalation and advanced process injection techniques.
+
+## Credits
+
+- https://dx9.uk/posts/nirvana-debugging/
+- https://s3cur3th1ssh1t.github.io/A-tale-of-EDR-bypass-methods/
+- https://github.com/tanc7/EXOCET-AV-Evasion
